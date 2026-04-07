@@ -1,0 +1,29 @@
+# X = Independent variable (e.g., study hours)
+x = [1, 2, 3, 4, 5]
+
+# Y = Dependent variable (e.g., marks)
+y = [30, 40, 50, 60, 70]
+
+n = len(x)
+
+# Calculate sums
+sum_x = sum(x)
+sum_y = sum(y)
+sum_xy = sum(x[i] * y[i] for i in range(n))
+sum_x2 = sum(x[i] ** 2 for i in range(n))
+
+# Calculate slope (b)
+b = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)
+
+# Calculate intercept (a)
+a = (sum_y - b * sum_x) / n
+
+# Print regression equation
+print("Regression Equation:")
+print(f"y = {a:.2f} + {b:.2f}x")
+
+# Prediction
+x_val = 6
+y_pred = a + b * x_val
+
+print(f"\nPredicted value at x = {x_val}: {y_pred:.2f}")
