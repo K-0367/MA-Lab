@@ -1,0 +1,44 @@
+import numpy as np
+
+# Input features (Study, Sleep)
+X = np.array([
+    [2, 6],
+    [4, 5],
+    [6, 6],
+    [8, 7],
+    [10, 8]
+])
+
+# Outputs: [Score, Attendance]
+Y = np.array([
+    [50, 70],
+    [55, 65],
+    [65, 75],
+    [80, 85],
+    [90, 95]
+])
+
+# Add intercept column (1s)
+ones = np.ones((X.shape[0], 1))
+X = np.hstack((ones, X))
+
+# Normal Equation for multi-output:
+# B = (XᵀX)⁻¹ XᵀY
+B = np.linalg.inv(X.T @ X) @ X.T @ Y
+
+# Coefficients
+print("Regression Coefficients:")
+print(B)
+
+# Prediction example
+study = 7
+sleep = 6
+
+# Add intercept manually
+input_data = np.array([1, study, sleep])
+
+prediction = input_data @ B
+
+print("\nPredicted Outputs:")
+print(f"Score = {prediction[0]:.2f}")
+print(f"Attendance = {prediction[1]:.2f}")
