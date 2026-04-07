@@ -1,0 +1,29 @@
+# Ad spending (independent variable)
+x = [10, 20, 30, 40, 50]   # in thousands (example)
+
+# Sales (dependent variable)
+y = [25, 45, 65, 85, 105]  # in thousands (example)
+
+n = len(x)
+
+# Calculate required sums
+sum_x = sum(x)
+sum_y = sum(y)
+sum_xy = sum(x[i] * y[i] for i in range(n))
+sum_x2 = sum(x[i] ** 2 for i in range(n))
+
+# Calculate slope (b)
+b = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)
+
+# Calculate intercept (a)
+a = (sum_y - b * sum_x) / n
+
+# Print regression equation
+print("Linear Regression Equation:")
+print(f"Sales = {a:.2f} + {b:.2f} * Ad_Spend")
+
+# Predict sales for a new ad spend value
+new_spend = 60
+predicted_sales = a + b * new_spend
+
+print(f"\nPredicted Sales for Ad Spend {new_spend}: {predicted_sales:.2f}")
