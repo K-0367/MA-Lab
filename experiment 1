@@ -1,0 +1,23 @@
+# Regression equation: y = a + bx
+
+# Given data (replace with your values)
+x = [2, 4, 6, 8, 10]
+y = [40, 50, 65, 80, 90]
+
+n = len(x)
+
+# Calculate sums
+sum_x = sum(x)
+sum_y = sum(y)
+sum_xy = sum(x[i] * y[i] for i in range(n))
+sum_x2 = sum(x[i] ** 2 for i in range(n))
+
+# Calculate slope (b)
+b = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)
+
+# Calculate intercept (a)
+a = (sum_y - b * sum_x) / n
+
+# Output
+print("Regression Equation:")
+print(f"y = {a:.2f} + {b:.2f}x")
