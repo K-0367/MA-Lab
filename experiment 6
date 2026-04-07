@@ -1,0 +1,37 @@
+import numpy as np
+
+# Input data
+# Columns: [Hours Studied, Hours Slept]
+X = np.array([
+    [2, 6],
+    [4, 5],
+    [6, 6],
+    [8, 7],
+    [10, 8]
+])
+
+# Output (Test Scores)
+Y = np.array([50, 55, 65, 80, 90])
+
+# Add column of 1s for intercept
+ones = np.ones((X.shape[0], 1))
+X = np.hstack((ones, X))
+
+# Apply Normal Equation: B = (XᵀX)⁻¹ XᵀY
+B = np.linalg.inv(X.T @ X) @ X.T @ Y
+
+# Coefficients
+a = B[0]   # intercept
+b1 = B[1]  # for study hours
+b2 = B[2]  # for sleep hours
+
+# Print equation
+print("Regression Equation:")
+print(f"Score = {a:.2f} + {b1:.2f}*Study + {b2:.2f}*Sleep")
+
+# Prediction example
+study = 7
+sleep = 6
+predicted_score = a + b1 * study + b2 * sleep
+
+print(f"\nPredicted Score for Study={study}, Sleep={sleep}: {predicted_score:.2f}")
