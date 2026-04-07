@@ -1,0 +1,29 @@
+# Temperature in °C (increments of 2)
+x = [20, 22, 24, 26, 28, 30]   # example
+
+# Sales units (replace with your data)
+y = [200, 240, 280, 300, 360, 400]
+
+n = len(x)
+
+# Calculate sums
+sum_x = sum(x)
+sum_y = sum(y)
+sum_xy = sum(x[i] * y[i] for i in range(n))
+sum_x2 = sum(x[i] ** 2 for i in range(n))
+
+# Calculate slope (b)
+b = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)
+
+# Calculate intercept (a)
+a = (sum_y - b * sum_x) / n
+
+# Regression equation
+print("Regression Equation:")
+print(f"Sales = {a:.2f} + {b:.2f} * Temperature")
+
+# Prediction example
+temp = 32
+predicted_sales = a + b * temp
+
+print(f"\nPredicted Sales at {temp}°C: {predicted_sales:.2f}")
