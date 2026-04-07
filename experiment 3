@@ -1,0 +1,29 @@
+# Years of Experience (independent variable)
+x = [1, 2, 3, 4, 5]   # example data
+
+# Salary in $k (dependent variable)
+y = [30, 35, 50, 55, 65]   # example data
+
+n = len(x)
+
+# Calculate sums
+sum_x = sum(x)
+sum_y = sum(y)
+sum_xy = sum(x[i] * y[i] for i in range(n))
+sum_x2 = sum(x[i] ** 2 for i in range(n))
+
+# Calculate slope (b)
+b = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)
+
+# Calculate intercept (a)
+a = (sum_y - b * sum_x) / n
+
+# Print regression equation
+print("Linear Regression Equation:")
+print(f"Salary = {a:.2f} + {b:.2f} * Experience")
+
+# Predict salary for a given experience
+exp = 6
+predicted_salary = a + b * exp
+
+print(f"\nPredicted Salary for {exp} years experience: {predicted_salary:.2f}k")
