@@ -1,0 +1,28 @@
+import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+
+# X = Independent variable (e.g., experience)
+x = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
+
+# Y = Dependent variable (e.g., salary)
+y = np.array([30, 45, 65, 90, 120])
+
+# Convert to polynomial features (degree = 2)
+poly = PolynomialFeatures(degree=2)
+x_poly = poly.fit_transform(x)
+
+# Train model
+model = LinearRegression()
+model.fit(x_poly, y)
+
+# Get coefficients
+print("Intercept:", model.intercept_)
+print("Coefficients:", model.coef_)
+
+# Prediction
+x_val = np.array([[6]])
+x_val_poly = poly.transform(x_val)
+y_pred = model.predict(x_val_poly)
+
+print(f"\nPredicted value at x = 6: {y_pred[0]:.2f}")
