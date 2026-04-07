@@ -1,0 +1,35 @@
+# Fertilizer amount (independent variable)
+x = [1, 2, 3, 4, 5]   # example
+
+# Number of defects (dependent variable - decreasing)
+y = [50, 45, 40, 35, 30]
+
+n = len(x)
+
+# Calculate sums
+sum_x = sum(x)
+sum_y = sum(y)
+sum_xy = sum(x[i] * y[i] for i in range(n))
+sum_x2 = sum(x[i] ** 2 for i in range(n))
+
+# Calculate slope (b)
+b = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)
+
+# Calculate intercept (a)
+a = (sum_y - b * sum_x) / n
+
+# Print regression equation
+print("Regression Equation:")
+print(f"Defects = {a:.2f} + {b:.2f} * Fertilizer")
+
+# Check relationship
+if b < 0:
+    print("\nNegative correlation: Increasing fertilizer reduces defects")
+else:
+    print("\nPositive correlation")
+
+# Prediction example
+fert = 6
+predicted_defects = a + b * fert
+
+print(f"\nPredicted defects at fertilizer {fert}: {predicted_defects:.2f}")
